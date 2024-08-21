@@ -3,81 +3,18 @@
 # https://youtu.be/W6T-RFei6SY
 import json
 import datetime
-import timent)
-    slots = e
+import time
 
 
-    
 def lambda_handler(event, context):
-    
-    # print(evevent['sessionState']['intent']['slots']
+#Função que recebe o nome da Intent e o tipo de evento
     intent = event['sessionState']['intent']['name']
-    print(event['invocationSource'])
-    print(slots)
-    print(intent)
-    validation_result = validate(event['sessionState']['intent']['slots'])
-    
-    if event['invocationSource'] == 'DialogCodeHook':
-        if not validation_result['isValid']:
-            
-            if 'message' in validation_result:
-            
-                response = {
-                "sessionState": {
-                    "dialogAction": {
-                        'slotToElicit':validation_result['violatedSlot'],
-                        "type": "ElicitSlot"
-                    },
-                    "intent": {
-                        'name':intent,
-                        'slots': slots
-                        
-                        }
-                },
-                "messages": [
-                    {
-                        "contentType": "PlainText",
-                        "content": validation_result['message']
-                    }
-                ]
-               } 
-            else:
-                response = {
-                "sessionState": {
-                    "dialogAction": {
-                        'slotToElicit':validation_result['violatedSlot'],
-                        "type": "ElicitSlot"
-                    },
-                    "intent": {
-                        'name':intent,
-                        'slots': slots
-                        
-                        }
-                }
-               } 
-    
-            return response
-           
-        else:
-            response = {
-            "sessionState": {
-                "dialogAction": {
-                    "type": "Delegate"
-                },
-                "intent": {
-                    'name':intent,
-                    'slots': slots
-                    
-                    }
-        
-            }
-        }
-            return response
-    
+#Linha que recebe o nome dos slots e os valores do mesmo.
+    slots = event['sessionState']['intent']['slots']
+#Essa condição ela é atendida sempre que um evento de FulfillmentCodeHook for recebida, no Amazon Lex definimos que após todos os slots forem preenchidos um Evento de Fulfillment é enviado
     if event['invocationSource'] == 'FulfillmentCodeHook':
-        
-        # Add order in Database
-        
+     
+   
         response = {
         "sessionState": {
             "dialogAction": {
@@ -94,9 +31,9 @@ def lambda_handler(event, context):
         "messages": [
             {
                 "contentType": "PlainText",
-                "content": "Thanks, I have placed your reservation"
+#Retornando o payload dos slots
+                "content": f"{slots}"
             }
         ]
-    }
-            
+    }       
         return response
