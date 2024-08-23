@@ -35,8 +35,7 @@ if resultado_whois:
     datetimes = resultado_whois.get("creation_date", [])
     if isinstance(datetimes, list):
         formatted_dates = [dt.strftime('%Y-%m-%d %H:%M:%S') for dt in datetimes if isinstance(dt, datetime)]
-    else:s))
-    #print(resultado_whois)
+          else:
 
   
         formatted_dates = [datetimes.strftime('%Y-%m-%d %H:%M:%S')] if isinstance(datetimes, datetime) else []
@@ -49,33 +48,3 @@ if resultado_whois:
     else:
         print("DATA DE CRIAÇÃO DO SITE: N/A")
   
-    # No Código abaixo é feita uma tentativa de forjar uma requisição para o cadastropre enviando como payload o CPF anteriormente coletado.
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0'
-        'Content-Type = application/x-www-form-urlencoded'
-
-    }
-
-    payload = {
-        "cpf":f"{cpf}"
-         # Corrigido a chave 'doc' e o valor cpf
-    }
-
-    url = 'https://cadastropre.com.br'  # Certifique-se de que a URL é correta
-
-    try:
-        with requests.Session() as session:
-            response = session.post(url, headers=headers, data=payload)
-            if response.status_code == 200:
-                print(f"Dados enviados com sucesso. Status Code: {response.status_code}")
-               # print("Resposta do servidor:", response.text)
-            else:
-                print(f"Erro ao enviar dados. Status Code: {response.status_code}")
-               #print("Resposta do servidor:", response.text)
-    except Exception as e:
-        print(f"Erro ao enviar dados: {e}")
-
-else:
-    print("Não foi possível obter informações sobre o domínio.")
-
-
