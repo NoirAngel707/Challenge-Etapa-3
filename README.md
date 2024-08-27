@@ -15,4 +15,4 @@ Chatbot que faz OSINT apartir de uma URL utilizando dados abertos ao público, c
 - Todos os dados coletados são então agrupados e conforme algumas condições aquele contato é classificado.
 
 ## Objetivo:
-- Criar um Bot que seja capaz de fornecer mais informações para o usuário de tal forma que ele consiga tomar uma decisão mais consciênte.
+- Criar um Bot que seja capaz de fornecer mais informações para o usuário de tal forma que ele consiga tomar uma decisão mais consciente.
