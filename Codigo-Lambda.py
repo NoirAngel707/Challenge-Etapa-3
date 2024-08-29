@@ -5,7 +5,7 @@ from phonenumbers import geocoder
 import difflib
 import re
 
-# Lista de domínios conhecidos para comparação
+# Lista de domínios conhecidos 
 DOMINIOS_CONHECIDOS = [
     "google.com",
     "facebook.com",
